@@ -1,0 +1,64 @@
+# ===================================================================
+# OurcraftGuard 配置文件
+# ===================================================================
+# 反加速检测基于物理仿真。
+# 设计目标：只防止 XZ 轴水平高速移动（瞬间传送/超速跑），Y 轴垂直方向不管。
+#
+# 默认配置非常宽松（leniency=10），原版附魔位移（风爆/突进/风弹/盾牌冲刺/
+# 灵魂疾行/激流等）都不会被误判。只有瞬间大幅传送才会被回弹。
+#
+# ---------------------------------------------------------------------------
+# 分组 BYPASS（按权限节点免检）
+# ---------------------------------------------------------------------------
+#   ourcraftguard.bypass         — 绕过全部检查
+#   ourcraftguard.bypass.speed   — 仅绕过速度检查
+#   ourcraftguard.bypass.flight  — 仅绕过飞行检查
+#   ourcraftguard.bypass.timer   — 仅绕过计时器检查
+#
+# 示例（让 vip 组绕过全部检查）:
+#   /lp group vip permission set ourcraftguard.bypass true
+# ---------------------------------------------------------------------------
+
+checks:
+  # 全局宽松倍率。>= 1.0。值越大越宽松。
+  # 10 = 允许 10 倍于正常速度的位移，足以容纳所有原版附魔位移。
+  leniency-multiplier: 10
+
+  speed:
+    # 每 tick 额外容差（方块），吸收浮点误差和附魔位移
+    per-tick-tolerance: 0.5
+
+    # 累计超限位移（方块）超过此值才触发违规
+    violation-threshold: 5.0
+
+    # 干净包每 tick 衰减的违规缓冲
+    violation-decay: 0.5
+
+    knockback:
+      multiplier: 6.0
+      duration: 1000  # ms
+
+    riptide:
+      multiplier: 2.5
+      duration: 3000
+
+    elytra:
+      landing-duration: 1500
+
+    vehicle-speed-multiplier: 1.5
+    vehicle-ice-speed-multiplier: 4.3
+
+  timer:
+    # 计时器检测。默认关闭（原版附魔/高 ping 容易误判）。
+    enabled: false
+    drift-millis: 120
+    max-violations: 5
+
+  flight:
+    # Y 轴垂直飞行检测。默认关闭 — 只防 XZ 轴水平高速移动。
+    # 如需防悬空飞挂可开启，但可能误判跳跃/风爆等垂直位移。
+    enabled: false
+
+settings:
+  # 详细日志（仅测试用）
+  debug-mode: false

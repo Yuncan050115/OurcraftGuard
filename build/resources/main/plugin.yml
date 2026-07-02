@@ -1,0 +1,33 @@
+name: OurcraftGuard
+version: '1.0.0'
+main: com.ourcraft.guard.OurcraftGuard
+api-version: '1.21'
+authors: [Yuncan, AlphaAlex115]
+website: https://github.com/Yuncan050115
+description: Ourcraft 轻量反飞行/反加速内核 — Folia 兼容，权限分组 bypass，原版附魔位移免疫
+folia-supported: true
+
+softdepend: [ProtocolLib]
+
+commands:
+  ourcraftguard:
+    description: OurcraftGuard 主命令
+    usage: /ourcraftguard help
+    aliases: [og, oguard, rcg]
+
+permissions:
+  ourcraftguard.admin:
+    description: 管理命令（重载、状态查询）
+    default: op
+  ourcraftguard.bypass:
+    description: 绕过全部检查（速度 + 飞行 + 计时器）
+    default: false
+  ourcraftguard.bypass.speed:
+    description: 仅绕过速度检查（ourcraftguard.bypass 已覆盖）
+    default: false
+  ourcraftguard.bypass.flight:
+    description: 仅绕过飞行检查（ourcraftguard.bypass 已覆盖）
+    default: false
+  ourcraftguard.bypass.timer:
+    description: 仅绕过计时器检查（ourcraftguard.bypass 已覆盖）
+    default: false
