@@ -15,7 +15,7 @@ repositories {
 
 dependencies {
     // Paper 1.21 API — 编译产物可向前兼容 1.21+ 及 26.x 服务端
-    compileOnly("io.papermc.paper:paper-api:1.21.1-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:26.3.build.244-stable")
     // ProtocolLib — 跨版本数据包抽象，替代直接 NMS 调用
     compileOnly("com.comphenix.protocol:ProtocolLib:5.3.0")
     // bStats — 通过 Shadow 打包进最终 jar
